@@ -5,21 +5,22 @@ import getStories from "./actions/getStories";
 import type { Story } from "./actions/getStories";
 
 export default function Page() {
-  const [stories, setStories] = useState<Array<Story>>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [hasMounted, setHasMounted] = useState(false);
+  const [stories, setStories] = useState<Array<Story>>([]); // Array of stories fetched from the API
+  const [page, setPage] = useState(1); // Page number to fetch stories from the API
+  const [loading, setLoading] = useState(true); // Loading state while fetching stories
+  const [hasMounted, setHasMounted] = useState(false); // Check if the component has mounted. This is used to prevent the initial fetch on mount.
 
+  // When the button is clicked, page number is incremented by 1 and more stories are fetched from the API.
   const handleClick = () => {
     setPage(page + 1);
   };
 
+  // Fetch stories from the API when the page number changes. This effect runs on mount and when the page number changes.
   useEffect(() => {
     if (!hasMounted) {
       setHasMounted(true);
       return;
     }
-
     const fetchStories = async () => {
       try {
         const response = await getStories(page);
@@ -31,10 +32,10 @@ export default function Page() {
         setLoading(false);
       }
     };
-
     fetchStories();
   }, [page, hasMounted]);
 
+  // Conditional rendering is used to show a loader while fetching the initial page of stories from the API.
   return (
     <div className="flex flex-col p-6 justify-center items-center bg-[#FFEAC6] space-y-[2rem] text-black">
       {loading ? (

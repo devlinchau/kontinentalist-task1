@@ -1,3 +1,5 @@
+// For each story, we need 4 attributes. We want to display the title, dek, and hero_image. 
+// We also need to store the id so that we can use it as a key prop. 
 export type Story = {
   id: string;
   title: string;
@@ -7,11 +9,13 @@ export type Story = {
   };
 };
 
+// Here we define the shape of the API response.
 type ApiResponse = {
   current_page: string;
   data: Story[];
 };
 
+// This function fetches stories from the API. We destructured the data array which contains the stories from the response and returned it as props.
 export default async function getStories(page: number) {
   try {
     const response = await fetch(
