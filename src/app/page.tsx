@@ -15,7 +15,7 @@ export default function Page() {
     setPage(page + 1);
   };
 
-  // Fetch stories from the API when the page number changes. This effect runs on mount and when the page number changes.
+  // Fetch stories from the API. This effect runs on mount and when the page number changes.
   useEffect(() => {
     if (!hasMounted) {
       setHasMounted(true);
