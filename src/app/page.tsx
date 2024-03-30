@@ -56,7 +56,7 @@ export default function Page() {
                 <img
                   src={story.hero_image.url}
                   alt={story.title}
-                  className="rounded-xl"
+                  className="rounded-xl object-cover"
                 />
               </div>
               <div className="flex flex-col w-[50%] justify-center">
